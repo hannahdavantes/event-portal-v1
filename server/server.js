@@ -2,7 +2,8 @@ import "express-async-errors";
 import { StatusCodes } from "http-status-codes";
 
 //Routers
-import eventRouter from "./routes/eventsRouter.js";
+import eventRouter from "./routers/eventsRouter.js";
+import authRouter from "./routers/authRouter.js";
 
 //Middlewares
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV === "development") {
 
 //Routes
 app.use("/api/v1/events", eventRouter);
+app.use("/api/v1/auth", authRouter);
 
 //Error middleware
 app.use(errorHandlerMiddleware);

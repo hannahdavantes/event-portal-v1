@@ -1,7 +1,8 @@
 import { body, param, validationResult } from "express-validator";
 import mongoose from "mongoose";
 import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
-import Event from "../models/Event.js";
+import Event from "../models/EventModel.js";
+import User from "../models/UserModel.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -60,4 +61,43 @@ export const validateIdParam = withValidationErrors([
       throw new NotFoundError(`Event with ID of ${value} not found`);
     }
   }),
+]);
+
+export const validateRegisterUser = withValidationErrors([
+  body("firstName").notEmpty().withMessage("First name is required"),
+  body("lastName").notEmpty().withMessage("Last name is required"),
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid email")
+    .custom(async (value) => {
+      const user = await User.findOne({ email: value });
+      if (user) {
+        throw new BadRequestError("Email already in use");
+      }
+    }),
+  body("password")
+    .notEmpty()
+    .withMessage("Password is required")
+    .isLength({ min: 8 })
+    .withMessage("Password must be at least 8 characters long"),
+  body("confirmPassword")
+    .notEmpty()
+    .withMessage("Confirm password is required")
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Passwords do not match");
+      }
+      return true;
+    }),
+]);
+
+export const validateLoginUser = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid Email"),
+  body("password").notEmpty().withMessage("Password is required"),
 ]);
