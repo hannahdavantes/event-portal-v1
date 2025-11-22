@@ -14,12 +14,6 @@ export const getAllEvents = async (req, res) => {
   res.status(StatusCodes.OK).json(events);
 };
 
-export const getAllEventsByUser = async (req, res) => {
-  const { userId } = req.user;
-  const events = await Event.find({ createdBy: userId });
-  res.status(StatusCodes.OK).json(events);
-};
-
 export const getEventById = async (req, res) => {
   const { id } = req.params;
   const event = await Event.findById(id);

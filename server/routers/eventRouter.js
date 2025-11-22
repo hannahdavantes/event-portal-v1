@@ -5,19 +5,17 @@ import {
   getEventById,
   deleteEvent,
   updateEvent,
-  getAllEventsByUser,
-} from "../controllers/eventsController.js";
+} from "../controllers/eventController.js";
 
 import {
   validateCreateOrUpdateEvent,
   validateEventIdParam,
-  validateUserIdParam,
 } from "../middlewares/validationMiddleware.js";
 
 const router = Router();
 
 router.get("/", getAllEvents);
-router.get("/user/:id", validateUserIdParam, getAllEventsByUser);
+router.get("/:id", validateEventIdParam, getEventById);
 router.post("/", validateCreateOrUpdateEvent, createEvent);
 router.put(
   "/:id",
@@ -25,7 +23,6 @@ router.put(
   validateEventIdParam,
   updateEvent
 );
-router.get("/:id", validateEventIdParam, getEventById);
 router.delete("/:id", validateEventIdParam, deleteEvent);
 
 export default router;

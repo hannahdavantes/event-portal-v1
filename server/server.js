@@ -4,6 +4,7 @@ import { StatusCodes } from "http-status-codes";
 //Routers
 import eventRouter from "./routers/eventRouter.js";
 import authRouter from "./routers/authRouter.js";
+import userRouter from "./routers/userRouter.js";
 
 //Middlewares
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
@@ -35,6 +36,7 @@ if (process.env.NODE_ENV === "development") {
 //Routes
 app.use("/api/v1/events", authenticateUser, eventRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
 //Error middleware
 app.use(errorHandlerMiddleware);
