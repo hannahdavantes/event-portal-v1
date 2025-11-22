@@ -2,11 +2,13 @@ import "express-async-errors";
 import { StatusCodes } from "http-status-codes";
 
 //Routers
-import eventRouter from "./routers/eventsRouter.js";
+import eventRouter from "./routers/eventRouter.js";
 import authRouter from "./routers/authRouter.js";
 
 //Middlewares
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
+
+import { authenticateUser } from "./middlewares/authMiddleware.js";
 
 //.env file configuration
 import * as dotenv from "dotenv";
@@ -20,6 +22,10 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
+//Cookie parse
+import cookieParser from "cookie-parser";
+app.use(cookieParser());
+
 //Morgan - HTTP request logger
 import morgan from "morgan";
 if (process.env.NODE_ENV === "development") {
@@ -27,7 +33,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 //Routes
-app.use("/api/v1/events", eventRouter);
+app.use("/api/v1/events", authenticateUser, eventRouter);
 app.use("/api/v1/auth", authRouter);
 
 //Error middleware

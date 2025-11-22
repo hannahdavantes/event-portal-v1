@@ -50,7 +50,7 @@ export const validateCreateOrUpdateEvent = withValidationErrors([
     }),
 ]);
 
-export const validateIdParam = withValidationErrors([
+export const validateEventIdParam = withValidationErrors([
   param("id").custom(async (value) => {
     const isValidId = mongoose.Types.ObjectId.isValid(value);
     if (!isValidId) {
@@ -58,6 +58,19 @@ export const validateIdParam = withValidationErrors([
     }
     const event = await Event.findById(value);
     if (!event) {
+      throw new NotFoundError(`Event with ID of ${value} not found`);
+    }
+  }),
+]);
+
+export const validateUserIdParam = withValidationErrors([
+  param("id").custom(async (value) => {
+    const isValidId = mongoose.Types.ObjectId.isValid(value);
+    if (!isValidId) {
+      throw new BadRequestError("Invalid MongoDB ID");
+    }
+    const user = await User.findById(value);
+    if (!user) {
       throw new NotFoundError(`Event with ID of ${value} not found`);
     }
   }),

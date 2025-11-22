@@ -1,6 +1,7 @@
+import { StatusCodes } from "http-status-codes";
 import { UnauthenticatedError } from "../errors/customErrors.js";
 import User from "../models/UserModel.js";
-import { StatusCodes } from "http-status-codes";
+import { createJWT } from "../utils/jwtUtils.js";
 
 export const registerUser = async (req, res) => {
   const userData = { ...req.body };
@@ -30,5 +31,13 @@ export const loginUser = async (req, res) => {
     throw new UnauthenticatedError("Invalid email or password");
   }
 
+  const token = createJWT({ userId: user._id, role: user.role });
+
+  const oneDay = 1000 * 60 * 60 * 24;
+  res.cookie("token", token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + oneDay),
+    secure: process.env.NODE_ENV === "production",
+  });
   res.status(StatusCodes.OK).json({ message: "User succesfully logged in" });
 };
