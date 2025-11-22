@@ -4,7 +4,7 @@ import { NotFoundError } from "../errors/customErrors.js";
 import { StatusCodes } from "http-status-codes";
 
 export const createEvent = async (req, res) => {
-  const event = await Event.create("");
+  const event = await Event.create(req.body);
   res.status(StatusCodes.CREATED).json(event);
 };
 
