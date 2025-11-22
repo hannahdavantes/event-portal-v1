@@ -1,5 +1,11 @@
+import "express-async-errors";
+import { StatusCodes } from "http-status-codes";
+
 //Routers
 import eventRouter from "./routes/eventsRouter.js";
+
+//Middlewares
+import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
 
 //.env file configuration
 import * as dotenv from "dotenv";
@@ -15,13 +21,15 @@ app.use(express.json());
 
 //Morgan - HTTP request logger
 import morgan from "morgan";
-import { StatusCodes } from "http-status-codes";
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
 //Routes
 app.use("/api/v1/events", eventRouter);
+
+//Error middleware
+app.use(errorHandlerMiddleware);
 
 //404 NOT FOUND error middleware
 app.use((req, res) => {
