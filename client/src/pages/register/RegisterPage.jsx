@@ -2,9 +2,6 @@ import Wrapper from "../../assets/wrappers/Form.js";
 import Button from "../../components/Button.jsx";
 import FormInputGroup from "../../components/FormInputGroup.jsx";
 
-import customFetch from "../../utils/customFetch.js";
-import { redirect } from "react-router-dom";
-
 const RegisterPage = () => {
   return (
     <Wrapper method="post">
@@ -18,7 +15,7 @@ const RegisterPage = () => {
         name="confirmPassword"
         labelText="confirm password"
       />
-      <Button></Button>
+      <Button />
     </Wrapper>
   );
 };

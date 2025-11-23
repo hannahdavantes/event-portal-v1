@@ -66,3 +66,28 @@ body {
   font-family: "Century Gothic", Sans-Serif;
   overflow-x: hidden;
 }
+
+/* REACT TOASTIFY */
+.Toastify__toast {
+  font-size: 1.6rem;
+}
+
+.Toastify__toast--success {
+  background-color: var(--primary-color-dark);
+  color: white;
+}
+
+.Toastify__toast--error {
+  background-color: var(--tertiary-color-dark);
+  color: white;
+}
+
+.Toastify__toast--info {
+  background-color: #2196f3;
+  color: white;
+}
+
+.Toastify__toast--warning {
+  background-color: #ffcc00;
+  color: black;
+}

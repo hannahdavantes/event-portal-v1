@@ -1,5 +1,5 @@
 import { Link, useRouteError } from "react-router-dom";
-import Wrapper from "../assets/wrappers/ErrorPage";
+import Wrapper from "../../assets/wrappers/ErrorPage";
 
 const ErrorPage = () => {
   const error = useRouteError();
