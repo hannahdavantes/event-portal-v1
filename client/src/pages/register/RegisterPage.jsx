@@ -1,11 +1,13 @@
-import Wrapper from "../assets/wrappers/Form";
-import Button from "../components/Button";
+import Wrapper from "../../assets/wrappers/Form.js";
+import Button from "../../components/Button.jsx";
+import FormInputGroup from "../../components/FormInputGroup.jsx";
 
-import FormInputGroup from "../components/FormInputGroup";
+import customFetch from "../../utils/customFetch.js";
+import { redirect } from "react-router-dom";
 
 const RegisterPage = () => {
   return (
-    <Wrapper>
+    <Wrapper method="post">
       <h1 className="title">Register Form</h1>
       <FormInputGroup type="text" name="firstName" labelText="first name" />
       <FormInputGroup type="text" name="lastName" labelText="last name" />

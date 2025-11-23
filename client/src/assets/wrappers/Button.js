@@ -3,13 +3,13 @@ import styled from "styled-components";
 const Wrapper = styled.button`
   padding: 1rem 2rem;
   background-color: var(--tertiary-color);
-  color: var(--primary-color-dark);
+  color: var(--primary-color);
   border: 2px solid var(--tertiary-color);
   border-radius: 5px;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2rem;
   cursor: pointer;
   transition: all 0.1s ease;
 

@@ -9,6 +9,8 @@ import {
   DashboardPage,
 } from "./pages";
 
+import { action as registerAction } from "./pages/register/registerAction.js";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +24,7 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <RegisterPage />,
+        action: registerAction,
       },
       {
         path: "login",

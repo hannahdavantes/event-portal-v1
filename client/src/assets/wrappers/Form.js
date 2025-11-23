@@ -1,6 +1,7 @@
+import { Form } from "react-router-dom";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   max-width: 50%;
@@ -11,6 +12,9 @@ const Wrapper = styled.div`
   gap: 2rem;
 
   .title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--primary-color-dark);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.8rem;
@@ -23,7 +27,7 @@ const Wrapper = styled.div`
 
     label {
       font-size: 1.8rem;
-      color: var(--white);
+      color: var(--primary-color-dark);
       text-transform: uppercase;
       letter-spacing: 1px;
       line-height: 1.4;
