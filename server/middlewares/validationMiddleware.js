@@ -1,6 +1,10 @@
 import { body, param, validationResult } from "express-validator";
 import mongoose from "mongoose";
-import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
+import {
+  BadRequestError,
+  NotFoundError,
+  UnauthorizedError,
+} from "../errors/customErrors.js";
 import Event from "../models/EventModel.js";
 import User from "../models/UserModel.js";
 
@@ -11,6 +15,12 @@ const withValidationErrors = (validateValues) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map((error) => error.msg);
+        if (errorMessages[0].startsWith("Event with ID")) {
+          throw new NotFoundError(errorMessages.join(", "));
+        }
+        if (errorMessages[0].startsWith("You do not have permission")) {
+          throw new UnauthorizedError(errorMessages.join(", "));
+        }
         throw new BadRequestError(errorMessages.join(", "));
       }
       next();
@@ -51,7 +61,7 @@ export const validateCreateOrUpdateEvent = withValidationErrors([
 ]);
 
 export const validateEventIdParam = withValidationErrors([
-  param("id").custom(async (value) => {
+  param("id").custom(async (value, { req }) => {
     const isValidId = mongoose.Types.ObjectId.isValid(value);
     if (!isValidId) {
       throw new BadRequestError("Invalid MongoDB ID");
@@ -59,6 +69,15 @@ export const validateEventIdParam = withValidationErrors([
     const event = await Event.findById(value);
     if (!event) {
       throw new NotFoundError(`Event with ID of ${value} not found`);
+    }
+    const isAdmin = req.user.role === "admin";
+    const isOwner = req.user.userId === event.createdBy.toString();
+    console.log(req.user);
+    console.log(event.createdBy.toString());
+    if (!isAdmin && !isOwner) {
+      throw new UnauthorizedError(
+        "You do not have permission to access this event"
+      );
     }
   }),
 ]);
