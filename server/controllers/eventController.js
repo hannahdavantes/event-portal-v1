@@ -3,14 +3,14 @@ import { NotFoundError } from "../errors/customErrors.js";
 
 import { StatusCodes } from "http-status-codes";
 
-export const createEvent = async (req, res) => {
-  req.body.createdBy = req.user.userId;
-  const event = await Event.create(req.body);
-  res.status(StatusCodes.CREATED).json(event);
-};
-
 export const getAllEvents = async (req, res) => {
   const events = await Event.find({});
+  res.status(StatusCodes.OK).json(events);
+};
+
+export const getAllEventsByLoggedInUser = async (req, res) => {
+  const { userId } = req.user;
+  const events = await Event.find({ createdBy: userId });
   res.status(StatusCodes.OK).json(events);
 };
 
@@ -21,6 +21,12 @@ export const getEventById = async (req, res) => {
     throw new NotFoundError(`Event with ID of ${id} not found`);
   }
   res.status(StatusCodes.OK).json(event);
+};
+
+export const createEvent = async (req, res) => {
+  req.body.createdBy = req.user.userId;
+  const event = await Event.create(req.body);
+  res.status(StatusCodes.CREATED).json(event);
 };
 
 export const updateEvent = async (req, res) => {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllEventsByLoggedInUser } from "../controllers/userController.js";
+import { getAllEventsByLoggedInUser } from "../controllers/eventController.js";
 import { authenticateUser } from "../middlewares/authMiddleware.js";
 
 const router = Router();

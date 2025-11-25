@@ -15,6 +15,7 @@ import {
 const router = Router();
 
 router.get("/", getAllEvents);
+router.get("/myEvents", getAllEvents);
 router.get("/:id", validateEventIdParam, getEventById);
 router.post("/", validateCreateOrUpdateEvent, createEvent);
 router.put(

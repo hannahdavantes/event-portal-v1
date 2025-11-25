@@ -1,4 +1,7 @@
+import { useLoaderData } from "react-router-dom";
+
 const DashboardPage = () => {
-  return <h1>DashboardPage</h1>;
+  const data = useLoaderData();
+  return <h1>{data}</h1>;
 };
 export default DashboardPage;

@@ -12,6 +12,8 @@ import {
 import { action as registerAction } from "./pages/register/registerAction.js";
 import { action as loginAction } from "./pages/login/loginAction.js";
 
+import { loader as dashboardLoader } from "./pages/dashboard/dashboardLoader.js";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,8 +37,12 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <DashboardPage />,
+        loader: dashboardLoader,
       },
     ],
+  },
+  {
+    hydrateFallbackElement: <div>Loading...</div>,
   },
 ]);
 
