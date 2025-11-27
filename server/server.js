@@ -9,8 +9,6 @@ import userRouter from "./routers/userRouter.js";
 //Middlewares
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
 
-import { authenticateUser } from "./middlewares/authMiddleware.js";
-
 //.env file configuration
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -34,7 +32,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 //Routes
-app.use("/api/v1/events", authenticateUser, eventRouter);
+// app.use("/api/v1/events", authenticateUser, eventRouter);
+app.use("/api/v1/events", eventRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
 

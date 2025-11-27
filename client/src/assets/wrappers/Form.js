@@ -4,9 +4,9 @@ import styled from "styled-components";
 const Wrapper = styled(Form)`
   display: flex;
   flex-direction: column;
-  max-width: 50%;
-  padding: 2.4rem;
   margin: 4rem auto;
+  width: 60%;
+  padding: 2.4rem;
   border: 2.2px solid var(--secondary-color);
   border-radius: 5px;
   gap: 2rem;

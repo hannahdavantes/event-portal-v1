@@ -5,6 +5,7 @@ import {
   getEventById,
   deleteEvent,
   updateEvent,
+  getAllEventsByLoggedInUser,
 } from "../controllers/eventController.js";
 
 import {
@@ -12,12 +13,14 @@ import {
   validateEventIdParam,
 } from "../middlewares/validationMiddleware.js";
 
+import { authenticateUser } from "../middlewares/authMiddleware.js";
+
 const router = Router();
 
-router.get("/", getAllEvents);
-router.get("/myEvents", getAllEvents);
-router.get("/:id", validateEventIdParam, getEventById);
-router.post("/", validateCreateOrUpdateEvent, createEvent);
+router.get("/all", getAllEvents);
+router.get("/myEvents", authenticateUser, getAllEventsByLoggedInUser);
+router.get("/:id", authenticateUser, validateEventIdParam, getEventById);
+router.post("/", authenticateUser, validateCreateOrUpdateEvent, createEvent);
 router.put(
   "/:id",
   validateCreateOrUpdateEvent,
