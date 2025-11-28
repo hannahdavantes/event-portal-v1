@@ -5,7 +5,7 @@ const Wrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   margin: 4rem auto;
-  width: 60%;
+  width: 30%;
   padding: 2.4rem;
   border: 2.2px solid var(--secondary-color);
   border-radius: 5px;
@@ -49,6 +49,18 @@ const Wrapper = styled(Form)`
     margin-top: 1rem;
     display: grid;
     place-items: center;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.6rem;
+  }
+  a {
+    font-weight: bold;
+  }
+
+  a:visited {
+    color: var(--off-white);
   }
 `;
 
