@@ -51,6 +51,29 @@ const Wrapper = styled(Form)`
     place-items: center;
   }
 
+  .back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--primary-color-dark);
+    color: var(--off-white);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .back-button:hover {
+    background-color: #022b2b; /* darker on hover */
+    transform: scale(1.05);
+  }
+
+  .back-button:active {
+    transform: scale(0.98);
+  }
+
   p {
     text-align: center;
     font-size: 1.6rem;

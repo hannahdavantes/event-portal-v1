@@ -10,13 +10,14 @@ const Wrapper = styled.button`
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1.2rem;
+  transition: background-color 0.3s, transform 0.2s;
   cursor: pointer;
-  transition: all 0.1s ease;
 
   &:hover {
     background-color: var(--tertiary-color-dark);
     border: 2px solid var(--tertiary-color-dark);
     color: var(--primary-color-dark);
+    transform: scale(1.05);
   }
 
   &:active {
