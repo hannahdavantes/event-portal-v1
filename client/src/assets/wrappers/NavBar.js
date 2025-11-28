@@ -7,13 +7,14 @@ const Wrapper = styled.nav`
   background-color: var(--primary-color);
   padding: 2rem 1rem;
   font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
 
   a {
     color: var(--white);
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
-    letter-spacing: 1rem;
     margin: 0 1rem;
     padding-left: 1rem;
   }
@@ -26,6 +27,13 @@ const Wrapper = styled.nav`
 
   a:hover {
     opacity: 0.8;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
   }
 `;
 

@@ -6,7 +6,7 @@ import {
   LoginPage,
   MainLayout,
   RegisterPage,
-  EventsPage,
+  EventsLayout,
   AddEvent,
   MyEvents,
 } from "./pages";
@@ -16,6 +16,7 @@ import { action as loginAction } from "./pages/login/loginAction.js";
 import { action as addEventAction } from "./pages/add-event/addEventAction.js";
 
 import { loader as myEventsLoader } from "./pages/my-events/myEventsLoader.js";
+import { loader as eventsLayoutLoader } from "./pages/events/eventsLayoutLoader.js";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,9 @@ const router = createBrowserRouter([
       },
       {
         path: "events",
-        element: <EventsPage />,
+        element: <EventsLayout />,
+        loader: eventsLayoutLoader,
+        hydrateFallbackElement: <p>Loading route...</p>,
         children: [
           {
             index: true,

@@ -1,8 +1,8 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useOutlet, useOutletContext } from "react-router-dom";
 
-const AllEvents = () => {
+const MyEvents = () => {
   const data = useLoaderData();
-
+  const { user } = useOutletContext();
   return (
     <div>
       {data.map((e) => (
@@ -11,4 +11,4 @@ const AllEvents = () => {
     </div>
   );
 };
-export default AllEvents;
+export default MyEvents;

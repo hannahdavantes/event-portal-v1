@@ -1,13 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-const TempWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
   color: var(--black);
 
-  a {
+  a,
+  button.nav-link {
     color: var(--black);
     text-decoration: none;
     text-transform: uppercase;
@@ -15,6 +15,10 @@ const TempWrapper = styled.div`
     letter-spacing: 1rem;
     margin: 0 1rem;
     padding-left: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
   }
 
   a.active {
@@ -22,16 +26,11 @@ const TempWrapper = styled.div`
     border-bottom: 3px solid var(--secondary-color);
     padding-bottom: 0.2rem;
   }
+
+  button.nav-link:hover,
+  a:hover {
+    color: var(--secondary-color);
+  }
 `;
 
-const EventsPage = () => {
-  return (
-    <TempWrapper>
-      <nav>
-        <Link to="/events/add">Add Event</Link>
-      </nav>
-      <Outlet />
-    </TempWrapper>
-  );
-};
-export default EventsPage;
+export default Wrapper;
