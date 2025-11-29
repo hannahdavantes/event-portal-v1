@@ -16,6 +16,7 @@ import { action as registerAction } from "./pages/register/registerAction.js";
 import { action as loginAction } from "./pages/login/loginAction.js";
 import { action as addEventAction } from "./pages/add-event/addEventAction.js";
 import { action as editEventAction } from "./pages/edit-event/editEventAction.js";
+import { action as deleteEventAction } from "./pages/delete-event/deleteEventAction.js";
 
 import { loader as myEventsLoader } from "./pages/my-events/myEventsLoader.js";
 import { loader as eventsLayoutLoader } from "./pages/events/eventsLayoutLoader.js";
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             loader: editEventLoader,
             hydrateFallbackElement: <p>Loading route...</p>,
             action: editEventAction,
+          },
+          {
+            path: "delete/:id",
+            action: deleteEventAction,
           },
         ],
       },

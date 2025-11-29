@@ -28,6 +28,6 @@ router.patch(
   validateEventIdParam,
   updateEvent
 );
-router.delete("/:id", validateEventIdParam, deleteEvent);
+router.delete("/:id", authenticateUser, validateEventIdParam, deleteEvent);
 
 export default router;

@@ -28,3 +28,18 @@ export const formatTimeForInput = (timeString) => {
 
   return `${String(hours).padStart(2, "0")}:${minutes}`;
 };
+
+export const formatTimeTo12Hour = (time24) => {
+  if (!time24) return "";
+
+  // Split hours and minutes
+  let [hours, minutes] = time24.split(":").map(Number);
+
+  // Determine AM or PM
+  const period = hours >= 12 ? "PM" : "AM";
+
+  // Convert 0 → 12, 13-23 → 1-11
+  hours = hours % 12 || 12;
+
+  return `${hours}:${String(minutes).padStart(2, "0")}${period}`;
+};

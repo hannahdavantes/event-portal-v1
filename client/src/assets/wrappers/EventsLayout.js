@@ -6,8 +6,8 @@ const Wrapper = styled.div`
   font-size: 2rem;
   color: var(--black);
 
-  a,
-  button.nav-link {
+  & a,
+  & button {
     color: var(--black);
     text-decoration: none;
     text-transform: uppercase;
@@ -19,16 +19,22 @@ const Wrapper = styled.div`
     border: none;
     cursor: pointer;
     font: inherit;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* for icons if any */
+    transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
   }
 
-  a.active {
+  & a.active {
     font-weight: bold;
     border-bottom: 3px solid var(--secondary-color);
     padding-bottom: 0.2rem;
   }
 
-  button.nav-link:hover,
-  a:hover {
+  & a:hover,
+  & button:hover {
     color: var(--secondary-color);
   }
 `;
