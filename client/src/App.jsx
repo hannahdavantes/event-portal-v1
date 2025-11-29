@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
   ErrorPage,
-  LandingPage,
+  AllEvents,
   LoginPage,
   MainLayout,
   RegisterPage,
@@ -10,6 +10,7 @@ import {
   AddEvent,
   MyEvents,
   EditEvent,
+  LandingPage,
 } from "./pages";
 
 import { action as registerAction } from "./pages/register/registerAction.js";
@@ -18,6 +19,7 @@ import { action as addEventAction } from "./pages/add-event/addEventAction.js";
 import { action as editEventAction } from "./pages/edit-event/editEventAction.js";
 import { action as deleteEventAction } from "./pages/delete-event/deleteEventAction.js";
 
+import { loader as allEventsLoader } from "./pages/all-events/allEventsLoader.js";
 import { loader as myEventsLoader } from "./pages/my-events/myEventsLoader.js";
 import { loader as eventsLayoutLoader } from "./pages/events/eventsLayoutLoader.js";
 import { loader as editEventLoader } from "./pages/edit-event/editEventLoader.js";
@@ -41,6 +43,12 @@ const router = createBrowserRouter([
         path: "login",
         element: <LoginPage />,
         action: loginAction,
+      },
+      {
+        path: "events/all",
+        element: <AllEvents />,
+        loader: allEventsLoader,
+        hydrateFallbackElement: <p>Loading route...</p>,
       },
       {
         path: "events",

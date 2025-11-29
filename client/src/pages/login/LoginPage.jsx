@@ -7,7 +7,7 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 const LoginPage = () => {
   return (
     <Wrapper method="post">
-      <Link to="/" className="back-button">
+      <Link to="/events/all" className="back-button">
         <MdOutlineKeyboardBackspace size={30} /> Back to events
       </Link>
       <h1 className="title">Login as Event Organizer</h1>

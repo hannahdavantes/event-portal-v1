@@ -1,11 +1,10 @@
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
-import Wrapper from "../../assets/wrappers/EventsPage";
+import Wrapper from "../../assets/wrappers/EventsPage.js";
 import Event from "../../components/Event";
 
 const MyEvents = () => {
   const data = useLoaderData();
-  const { user } = useOutletContext();
 
   return (
     <Wrapper>

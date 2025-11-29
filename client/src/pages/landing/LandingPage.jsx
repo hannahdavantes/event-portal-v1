@@ -84,7 +84,7 @@ const LandingSection = () => {
     <Section>
       <Container>
         <Title>Events Portal</Title>
-        <Button href="/all-events">
+        <Button href="/events/all">
           <IconLarge>
             <FaCalendarAlt />
           </IconLarge>
