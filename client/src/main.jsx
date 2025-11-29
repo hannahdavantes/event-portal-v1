@@ -9,6 +9,10 @@ import { ToastContainer } from "react-toastify";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
-    <ToastContainer position="top-center" />
+    <ToastContainer
+      position="top-center"
+      hideProgressBar="true"
+      autoClose="1000"
+    />
   </StrictMode>
 );

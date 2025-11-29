@@ -9,14 +9,17 @@ import {
   EventsLayout,
   AddEvent,
   MyEvents,
+  EditEvent,
 } from "./pages";
 
 import { action as registerAction } from "./pages/register/registerAction.js";
 import { action as loginAction } from "./pages/login/loginAction.js";
 import { action as addEventAction } from "./pages/add-event/addEventAction.js";
+import { action as editEventAction } from "./pages/edit-event/editEventAction.js";
 
 import { loader as myEventsLoader } from "./pages/my-events/myEventsLoader.js";
 import { loader as eventsLayoutLoader } from "./pages/events/eventsLayoutLoader.js";
+import { loader as editEventLoader } from "./pages/edit-event/editEventLoader.js";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +57,13 @@ const router = createBrowserRouter([
             path: "add",
             element: <AddEvent />,
             action: addEventAction,
+          },
+          {
+            path: "edit/:id",
+            element: <EditEvent />,
+            loader: editEventLoader,
+            hydrateFallbackElement: <p>Loading route...</p>,
+            action: editEventAction,
           },
         ],
       },

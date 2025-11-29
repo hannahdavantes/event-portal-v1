@@ -21,8 +21,9 @@ router.get("/all", getAllEvents);
 router.get("/myEvents", authenticateUser, getAllEventsByLoggedInUser);
 router.get("/:id", authenticateUser, validateEventIdParam, getEventById);
 router.post("/", authenticateUser, validateCreateOrUpdateEvent, createEvent);
-router.put(
+router.patch(
   "/:id",
+  authenticateUser,
   validateCreateOrUpdateEvent,
   validateEventIdParam,
   updateEvent

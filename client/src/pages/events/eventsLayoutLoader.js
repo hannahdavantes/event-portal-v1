@@ -4,7 +4,6 @@ import customFetch from "../../utils/customFetch";
 export const loader = async () => {
   try {
     const { data } = await customFetch("/user/me");
-    console.log(data);
     return data;
   } catch (error) {
     return redirect("/");

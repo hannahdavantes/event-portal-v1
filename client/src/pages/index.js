@@ -6,3 +6,4 @@ export { default as ErrorPage } from "./error/ErrorPage";
 export { default as EventsLayout } from "./events/EventsLayout.jsx";
 export { default as MyEvents } from "./my-events/MyEvents.jsx";
 export { default as AddEvent } from "./add-event/AddEvent.jsx";
+export { default as EditEvent } from "./edit-event/EditEvent.jsx";
