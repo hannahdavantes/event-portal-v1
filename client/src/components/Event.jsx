@@ -14,6 +14,7 @@ const Event = ({ event, showActions, showJoinAction }) => {
     endDate,
     startTime,
     endTime,
+    image,
   } = event;
 
   return (
@@ -23,7 +24,7 @@ const Event = ({ event, showActions, showJoinAction }) => {
       <div className="card-content">
         <div className="card-img-container">
           <img
-            src="/default-event-image.jpg"
+            src={image ? image : "/default-event-image.jpg"}
             alt={title}
             className="card-img"
           />

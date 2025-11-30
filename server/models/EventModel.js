@@ -16,6 +16,7 @@ const eventSchema = new mongoose.Schema(
     startTime: String,
     endTime: String,
     image: String,
+    imagePublicId: String,
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",

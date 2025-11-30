@@ -1,6 +1,7 @@
 import Event from "../models/EventModel.js";
 import { NotFoundError } from "../errors/customErrors.js";
-
+import cloudinary from "cloudinary";
+import { promises as fs } from "fs";
 import { StatusCodes } from "http-status-codes";
 
 export const getAllEvents = async (req, res) => {
@@ -31,10 +32,18 @@ export const createEvent = async (req, res) => {
 
 export const updateEvent = async (req, res) => {
   const { id } = req.params;
-  console.log(req.file);
-  const event = await Event.findByIdAndUpdate(id, req.body, { new: true });
-  if (!event) {
-    throw new NotFoundError(`Event with ID of ${id} not found`);
+  const newEvent = { ...req.body };
+
+  if (req.file) {
+    const response = await cloudinary.v2.uploader.upload(req.file.path);
+    await fs.unlink(req.file.path);
+    newEvent.image = response.secure_url;
+    newEvent.imagePublicId = response.public_id;
+  }
+
+  const event = await Event.findByIdAndUpdate(id, newEvent);
+  if (req.file && event.avatarPublicId) {
+    await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
   }
   res.status(StatusCodes.OK).json(event);
 };

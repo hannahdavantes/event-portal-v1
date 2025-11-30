@@ -1,5 +1,6 @@
 import "express-async-errors";
 import { StatusCodes } from "http-status-codes";
+import cloudinary from "cloudinary";
 
 //Routers
 import eventRouter from "./routers/eventRouter.js";
@@ -12,6 +13,13 @@ import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
 //.env file configuration
 import * as dotenv from "dotenv";
 dotenv.config();
+
+//Cloudinary - uploading
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 //Object Document Mapper for MongoDB
 import mongoose from "mongoose";
