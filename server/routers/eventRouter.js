@@ -6,9 +6,11 @@ import {
   deleteEvent,
   updateEvent,
   getAllEventsByLoggedInUser,
+  addAttendee,
 } from "../controllers/eventController.js";
 
 import {
+  validateAttendee,
   validateCreateOrUpdateEvent,
   validateEventIdParam,
 } from "../middlewares/validationMiddleware.js";
@@ -29,5 +31,7 @@ router.patch(
   updateEvent
 );
 router.delete("/:id", authenticateUser, validateEventIdParam, deleteEvent);
+
+router.post("/:id/attendees", validateAttendee, addAttendee);
 
 export default router;

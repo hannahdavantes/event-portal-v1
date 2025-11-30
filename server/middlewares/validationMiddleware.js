@@ -72,7 +72,6 @@ export const validateEventIdParam = withValidationErrors([
     }
     const isAdmin = req.user.role === "admin";
     const isOwner = req.user.userId === event.createdBy.toString();
-    console.log(req.user);
     console.log(event.createdBy.toString());
     if (!isAdmin && !isOwner) {
       throw new UnauthorizedError(
@@ -119,4 +118,24 @@ export const validateLoginUser = withValidationErrors([
     .isEmail()
     .withMessage("Invalid Email"),
   body("password").notEmpty().withMessage("Password is required"),
+]);
+
+export const validateAttendee = withValidationErrors([
+  body("firstName").notEmpty().withMessage("First name is required"),
+  body("lastName").notEmpty().withMessage("Last name is required"),
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid email"),
+  param("id").custom(async (value, { req }) => {
+    const isValidId = mongoose.Types.ObjectId.isValid(value);
+    if (!isValidId) {
+      throw new BadRequestError("Invalid MongoDB ID");
+    }
+    const event = await Event.findById(value);
+    if (!event) {
+      throw new NotFoundError(`Event with ID of ${value} not found`);
+    }
+  }),
 ]);

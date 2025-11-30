@@ -46,3 +46,18 @@ export const deleteEvent = async (req, res) => {
   }
   res.status(StatusCodes.OK).json(event);
 };
+
+export const addAttendee = async (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, email } = req.body;
+
+  const event = await Event.findById(id);
+  if (!event) {
+    return res.status(404).json({ msg: `Event with ID of ${id} not found` });
+  }
+
+  event.attendees.push({ firstName, lastName, email });
+  await event.save();
+
+  res.status(200).json({ msg: "Attendee added" });
+};

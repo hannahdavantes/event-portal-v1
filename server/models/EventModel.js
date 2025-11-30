@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 
+const attendeeSchema = new mongoose.Schema({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true },
+});
+
 const eventSchema = new mongoose.Schema(
   {
     title: String,
@@ -14,6 +20,7 @@ const eventSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
+    attendees: [attendeeSchema],
   },
   { timestamps: true }
 );
