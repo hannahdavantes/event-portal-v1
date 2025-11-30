@@ -8,3 +8,4 @@ export { default as MyEvents } from "./my-events/MyEvents.jsx";
 export { default as AddEvent } from "./add-event/AddEvent.jsx";
 export { default as EditEvent } from "./edit-event/EditEvent.jsx";
 export { default as AllEvents } from "./all-events/AllEvents.jsx";
+export { default as AddAttendee } from "./add-attendee/AddAttendee.jsx";

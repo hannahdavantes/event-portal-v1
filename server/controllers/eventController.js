@@ -31,6 +31,7 @@ export const createEvent = async (req, res) => {
 
 export const updateEvent = async (req, res) => {
   const { id } = req.params;
+  console.log(req.file);
   const event = await Event.findByIdAndUpdate(id, req.body, { new: true });
   if (!event) {
     throw new NotFoundError(`Event with ID of ${id} not found`);

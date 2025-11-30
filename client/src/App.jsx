@@ -11,6 +11,7 @@ import {
   MyEvents,
   EditEvent,
   LandingPage,
+  AddAttendee,
 } from "./pages";
 
 import { action as registerAction } from "./pages/register/registerAction.js";
@@ -18,6 +19,7 @@ import { action as loginAction } from "./pages/login/loginAction.js";
 import { action as addEventAction } from "./pages/add-event/addEventAction.js";
 import { action as editEventAction } from "./pages/edit-event/editEventAction.js";
 import { action as deleteEventAction } from "./pages/delete-event/deleteEventAction.js";
+import { action as addAttendeeAction } from "./pages/add-attendee/addAttendeeAction.js";
 
 import { loader as allEventsLoader } from "./pages/all-events/allEventsLoader.js";
 import { loader as myEventsLoader } from "./pages/my-events/myEventsLoader.js";
@@ -49,6 +51,11 @@ const router = createBrowserRouter([
         element: <AllEvents />,
         loader: allEventsLoader,
         hydrateFallbackElement: <p>Loading route...</p>,
+      },
+      {
+        path: "events/:id/attendees",
+        element: <AddAttendee />,
+        action: addAttendeeAction,
       },
       {
         path: "events",

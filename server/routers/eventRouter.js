@@ -16,6 +16,7 @@ import {
 } from "../middlewares/validationMiddleware.js";
 
 import { authenticateUser } from "../middlewares/authMiddleware.js";
+import upload from "../middlewares/multerMiddleware.js";
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.post("/", authenticateUser, validateCreateOrUpdateEvent, createEvent);
 router.patch(
   "/:id",
   authenticateUser,
+  upload.single("image"),
   validateCreateOrUpdateEvent,
   validateEventIdParam,
   updateEvent

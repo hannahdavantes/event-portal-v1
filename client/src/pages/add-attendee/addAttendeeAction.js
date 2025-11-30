@@ -5,13 +5,13 @@ import { toast } from "react-toastify";
 
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
-
+  const data = Object.fromEntries(formData);
   try {
-    await customFetch.patch(`/events/${params.id}`, formData);
-    toast.success("Event edited successfully");
-    return redirect("/events");
+    await customFetch.post(`/events/${params.id}/attendees`, data);
+    toast.success("You have registered to the event");
+    return redirect("/events/all");
   } catch (error) {
-    toast.error(error.response.data.msg);
+    toast.error(error?.response?.data?.message);
     return error;
   }
 };

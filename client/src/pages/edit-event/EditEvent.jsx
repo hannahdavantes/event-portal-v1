@@ -20,8 +20,9 @@ const EditEvent = () => {
   } = event;
 
   return (
-    <Wrapper method="POST">
+    <Wrapper method="POST" encType="multipart/form-data">
       <h1 className="title">Add Event</h1>
+      <FormInputGroup type="file" id="image" name="image" accept="image/*" />
       <FormInputGroup
         type="text"
         name="title"
