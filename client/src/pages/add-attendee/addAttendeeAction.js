@@ -7,7 +7,7 @@ export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
-    await customFetch.post(`/events/${params.id}/attendees`, data);
+    await customFetch.post(`/events/${params.id}/join`, data);
     toast.success("You have registered to the event");
     return redirect("/events/all");
   } catch (error) {

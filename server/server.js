@@ -1,4 +1,9 @@
 import "express-async-errors";
+
+//.env file configuration
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import { StatusCodes } from "http-status-codes";
 import cloudinary from "cloudinary";
 
@@ -9,10 +14,6 @@ import userRouter from "./routers/userRouter.js";
 
 //Middlewares
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
-
-//.env file configuration
-import * as dotenv from "dotenv";
-dotenv.config();
 
 //Cloudinary - uploading
 cloudinary.config({
@@ -38,6 +39,9 @@ import morgan from "morgan";
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+//For event emitters
+import "./eventEmitter/eventHandler.js";
 
 //Routes
 // app.use("/api/v1/events", authenticateUser, eventRouter);

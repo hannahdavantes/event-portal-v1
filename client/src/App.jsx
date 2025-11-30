@@ -20,6 +20,7 @@ import { action as addEventAction } from "./pages/add-event/addEventAction.js";
 import { action as editEventAction } from "./pages/edit-event/editEventAction.js";
 import { action as deleteEventAction } from "./pages/delete-event/deleteEventAction.js";
 import { action as addAttendeeAction } from "./pages/add-attendee/addAttendeeAction.js";
+import { action as notifyAction } from "./pages/notify-attendees/notifyAction.js";
 
 import { loader as allEventsLoader } from "./pages/all-events/allEventsLoader.js";
 import { loader as myEventsLoader } from "./pages/my-events/myEventsLoader.js";
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <p>Loading route...</p>,
       },
       {
-        path: "events/:id/attendees",
+        path: "events/:id/join",
         element: <AddAttendee />,
         action: addAttendeeAction,
       },
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
           {
             path: "delete/:id",
             action: deleteEventAction,
+          },
+          {
+            path: ":id/notify",
+            action: notifyAction,
           },
         ],
       },

@@ -7,6 +7,7 @@ import {
   updateEvent,
   getAllEventsByLoggedInUser,
   addAttendee,
+  notifyAttendees,
 } from "../controllers/eventController.js";
 
 import {
@@ -34,6 +35,8 @@ router.patch(
 );
 router.delete("/:id", authenticateUser, validateEventIdParam, deleteEvent);
 
-router.post("/:id/attendees", validateAttendee, addAttendee);
+router.post("/:id/join", validateAttendee, addAttendee);
+
+router.post("/:id/notify", notifyAttendees);
 
 export default router;
