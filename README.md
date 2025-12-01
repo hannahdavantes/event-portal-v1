@@ -93,11 +93,3 @@ Create `server/.env` from `server/.env.example`. The server expects the followin
 
 - The project uses `concurrently` at the repo root to run both services for development.
 - For production you can build the client (`cd client && npm run build`) and serve static assets with any static host or integrate the built assets into Express if desired.
-
----
-
-If you want I can:
-
-- add `server/.env.example` (I can add it now),
-- add a `Makefile` or helpful npm scripts to streamline setup,
-- or add a short troubleshooting checklist for common environment problems.
