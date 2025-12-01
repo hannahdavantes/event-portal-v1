@@ -29,7 +29,8 @@ const Wrapper = styled(Form)`
       font-size: 1.8rem;
       color: var(--primary-color-dark);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      /* consistent units: use rem (1px ≈ 0.1rem at current root) */
+      letter-spacing: 0.1rem;
       line-height: 1.4;
       margin-bottom: 0.5rem;
     }

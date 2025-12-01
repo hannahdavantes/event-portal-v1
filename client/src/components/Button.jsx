@@ -6,7 +6,7 @@ const Button = ({ isInForm }) => {
   return (
     <Wrapper
       type="submit"
-      className={`btn btn-block ${isInForm && "form-btn"}`}
+      className={isInForm ? "form-btn" : undefined}
       disabled={isSubmitting}
     >
       {isSubmitting ? "submitting..." : "submit"}
