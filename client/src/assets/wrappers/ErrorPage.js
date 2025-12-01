@@ -7,6 +7,16 @@ const Wrapper = styled.div`
   justify-content: center;
   height: 100vh;
   font-size: 2rem;
+  gap: 2rem;
+
+  .error-img {
+    width: 60%;
+    max-width: 30rem;
+  }
+
+  .error-link {
+    color: var(--secondary-color-dark);
+  }
 `;
 
 export default Wrapper;

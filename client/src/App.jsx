@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 
 import {
   ErrorPage,
@@ -89,6 +93,7 @@ const router = createBrowserRouter([
           {
             path: ":id/notify",
             action: notifyAction,
+            loader: () => redirect("/events"),
           },
         ],
       },

@@ -21,8 +21,8 @@ const Wrapper = styled.button`
   }
 
   &:active {
-    transform: scale(0.97); /* slightly shrinks on press */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle pressed shadow */
+    transform: scale(0.97);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   &:disabled {

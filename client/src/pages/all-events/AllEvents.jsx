@@ -7,13 +7,18 @@ const AllEvents = () => {
 
   return (
     <Wrapper>
-      <h1>
-        Want to add events? Click <a href="/register">here</a> to register as an
-        event organizer
-      </h1>
+      <h1 className="title">Upcoming events</h1>
+      <h2 className="subtitle">Find the perfect event to join today.</h2>
       {data.map((e) => (
         <Event event={e} key={e._id} showJoinAction />
       ))}
+      <h1>
+        Want to add events? Click{" "}
+        <a href="/register" className="title-link">
+          here
+        </a>{" "}
+        to register as an event organizer.
+      </h1>
     </Wrapper>
   );
 };

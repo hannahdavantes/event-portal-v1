@@ -12,6 +12,6 @@ export const action = async ({ request }) => {
     return redirect("/events");
   } catch (error) {
     toast.error(error?.response?.data?.message);
-    return error;
+    return { error, data };
   }
 };

@@ -29,13 +29,14 @@ const withValidationErrors = (validateValues) => {
 };
 
 export const validateCreateOrUpdateEvent = withValidationErrors([
-  body("title").notEmpty().withMessage("Title is required"),
+  body("title").trim().notEmpty().withMessage("Title is required"),
   body("description")
+    .trim()
     .notEmpty()
     .withMessage("Description is required")
     .isLength({ max: 300 })
     .withMessage("Description must be less than 300 characters"),
-  body("location").notEmpty().withMessage("Location is required"),
+  body("location").trim().notEmpty().withMessage("Location is required"),
   body("startDate").notEmpty().withMessage("Start date is required"),
   body("endDate")
     .notEmpty()
@@ -43,7 +44,7 @@ export const validateCreateOrUpdateEvent = withValidationErrors([
     .custom((value, { req }) => {
       const start = new Date(req.body.startDate);
       const end = new Date(value);
-      if (start >= end) {
+      if (start > end) {
         throw new Error("End date must be after start date");
       }
       return true;
@@ -82,9 +83,10 @@ export const validateEventIdParam = withValidationErrors([
 ]);
 
 export const validateRegisterUser = withValidationErrors([
-  body("firstName").notEmpty().withMessage("First name is required"),
-  body("lastName").notEmpty().withMessage("Last name is required"),
+  body("firstName").trim().notEmpty().withMessage("First name is required"),
+  body("lastName").trim().notEmpty().withMessage("Last name is required"),
   body("email")
+    .trim()
     .notEmpty()
     .withMessage("Email is required")
     .isEmail()
@@ -96,11 +98,13 @@ export const validateRegisterUser = withValidationErrors([
       }
     }),
   body("password")
+    .trim()
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters long"),
   body("confirmPassword")
+    .trim()
     .notEmpty()
     .withMessage("Confirm password is required")
     .custom((value, { req }) => {
@@ -113,6 +117,7 @@ export const validateRegisterUser = withValidationErrors([
 
 export const validateLoginUser = withValidationErrors([
   body("email")
+    .trim()
     .notEmpty()
     .withMessage("Email is required")
     .isEmail()
@@ -121,9 +126,10 @@ export const validateLoginUser = withValidationErrors([
 ]);
 
 export const validateAttendee = withValidationErrors([
-  body("firstName").notEmpty().withMessage("First name is required"),
-  body("lastName").notEmpty().withMessage("Last name is required"),
+  body("firstName").trim().notEmpty().withMessage("First name is required"),
+  body("lastName").trim().notEmpty().withMessage("Last name is required"),
   body("email")
+    .trim()
     .notEmpty()
     .withMessage("Email is required")
     .isEmail()

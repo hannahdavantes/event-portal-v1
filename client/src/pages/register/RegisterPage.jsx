@@ -6,9 +6,9 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 const RegisterPage = () => {
   return (
-    <Wrapper method="post">
-      <Link to="/events/all" className="back-button">
-        <MdOutlineKeyboardBackspace size={30} /> Back to events
+    <Wrapper method="POST">
+      <Link to="/" className="back-button">
+        <MdOutlineKeyboardBackspace size={30} /> BACK TO HOME
       </Link>
       <h1 className="title">Register as Event Organizer</h1>
       <FormInputGroup type="text" name="firstName" labelText="first name" />
@@ -20,7 +20,7 @@ const RegisterPage = () => {
         name="confirmPassword"
         labelText="confirm password"
       />
-      <Button />
+      <Button isInForm />
       <p>
         Already registered? Click <Link to="/login">here</Link> to login.
       </p>

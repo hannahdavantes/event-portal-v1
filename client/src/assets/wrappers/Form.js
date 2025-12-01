@@ -66,7 +66,7 @@ const Wrapper = styled(Form)`
   }
 
   .back-button:hover {
-    background-color: #022b2b; /* darker on hover */
+    background-color: var(--primary-color-dark);
     transform: scale(1.05);
   }
 

@@ -58,54 +58,47 @@ export const deleteEvent = async (req, res) => {
   res.status(StatusCodes.OK).json(event);
 };
 
+import eventEmitter from "../eventEmitter/eventEmitter.js";
+
 export const addAttendee = async (req, res) => {
   const { id } = req.params;
   const { firstName, lastName, email } = req.body;
 
   const event = await Event.findById(id);
   if (!event) {
-    return res.status(404).json({ msg: `Event with ID of ${id} not found` });
+    throw new NotFoundError(`Event with ID of ${id} not found`);
   }
 
   event.attendees.push({ firstName, lastName, email });
   await event.save();
 
-  await sendEmail({
-    to: email,
-    subject: `You are now attending ${event.title}!`,
-    html: `
-      <h2>Hello ${firstName} ${lastName},</h2>
-      <p>You have been successfully added as an attendee for:</p>
-
-      <h3>${event.title}</h3>
-      <p><b>Date:</b> ${event.startDate} — ${event.endDate}</p>
-      <p><b>Location:</b> ${event.location}</p>
-
-      <br />
-      <p>Thank you for registering!</p>
-    `,
+  eventEmitter.emit("confirmEventRegistration", {
+    firstName,
+    lastName,
+    email,
+    event,
   });
 
-  res.status(200).json({ msg: "Attendee added & email sent!" });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: "Attendee added & confirmation email send!" });
 };
-
-import eventEmitter from "../eventEmitter/eventEmitter.js";
 
 export const notifyAttendees = async (req, res) => {
   const { id } = req.params;
 
   const event = await Event.findById(id);
   if (!event) {
-    return res.status(404).json({ msg: `Event with ID of ${id} not found` });
+    throw new NotFoundError(`Event with ID of ${id} not found`);
   }
 
   if (!event.attendees || event.attendees.length === 0) {
-    return res.status(400).json({ msg: "No attendees to notify" });
+    throw new NotFoundError(`No attendees to notify`);
   }
 
   eventEmitter.emit("notifyAttendees", { event });
 
   return res
-    .status(200)
-    .json({ msg: "Email notifications are being sent to the attendees" });
+    .status(StatusCodes.OK)
+    .json({ msg: "Email notifications sent to the attendees" });
 };

@@ -2,6 +2,39 @@ import eventEmitter from "./eventEmitter.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { formatDateForInput, formatTimeTo12Hour } from "../utils/dateUtils.js";
 
+eventEmitter.on(
+  "confirmEventRegistration",
+  async ({ firstName, lastName, email, event }) => {
+    await sendEmail({
+      to: email,
+      subject: `You have been registered to ${event.title}!`,
+      html: `
+      <h2>Hello ${firstName} ${lastName},</h2>
+      <p>You have been successfully added as an attendee for:</p>
+
+      <h3>${event.title}</h3>
+      <p>${event.description}</p>
+
+      <p><strong>Date:</strong> 
+        ${formatDateForInput(event.startDate)} 
+        to 
+        ${formatDateForInput(event.endDate)}
+      </p>
+
+      <p><strong>Time:</strong> 
+        ${formatTimeTo12Hour(event.startTime)} 
+        to 
+        ${formatTimeTo12Hour(event.endTime)}
+      </p>
+
+      <p><strong>Location:</strong> ${event.location}</p>
+
+      <p>Thank you for registering!</p>
+    `,
+    });
+  }
+);
+
 eventEmitter.on("notifyAttendees", async ({ event }) => {
   console.log("Sending notifications to attendees...");
 

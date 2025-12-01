@@ -16,12 +16,11 @@ const Event = ({ event, showActions, showJoinAction }) => {
     startTime,
     endTime,
     image,
+    attendees,
   } = event;
 
   return (
     <Wrapper>
-      <h1 className="card-title">{title}</h1>
-
       <div className="card-content">
         <div className="card-img-container">
           <img
@@ -32,6 +31,8 @@ const Event = ({ event, showActions, showJoinAction }) => {
         </div>
 
         <div className="card-details">
+          <h1 className="card-title">{title}</h1>
+
           <p className="card-description">{description}</p>
 
           <p className="card-datetime">
@@ -48,24 +49,26 @@ const Event = ({ event, showActions, showJoinAction }) => {
           <p className="card-datetime">
             <span>Location:</span> {location}
           </p>
+          <p className="card-datetime">
+            <span>Number of Attendees:</span> {attendees.length}
+          </p>
 
           {showActions && (
             <div className="card-actions">
               <>
-                <Link
-                  to={`/events/edit/${_id}`}
-                  className="btn-action btn-warn"
-                >
-                  <FiEdit size={16} /> Edit
-                </Link>
+                <Form method="get" action={`/events/edit/${_id}`}>
+                  <button className="btn-action btn-warn">
+                    <FiEdit size={16} /> Edit
+                  </button>
+                </Form>
                 <Form method="post" action={`/events/delete/${_id}`}>
                   <button type="submit" className="btn-action btn-danger">
                     <FiTrash2 size={16} /> Delete
                   </button>
                 </Form>
                 <Form method="post" action={`/events/${_id}/notify`}>
-                  <button type="submit" className="btn-action btn-danger">
-                    <HiSpeakerphone size={16} /> Notify
+                  <button type="submit" className="btn-action btn-success">
+                    <HiSpeakerphone size={16} /> Notify Attendees
                   </button>
                 </Form>
               </>

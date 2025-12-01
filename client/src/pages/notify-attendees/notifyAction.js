@@ -8,7 +8,9 @@ export const action = async ({ params }) => {
     toast.success("Notifications sent to all attendees!");
     return redirect("/events");
   } catch (error) {
-    toast.error(error?.response?.data?.msg || "Failed to send notifications");
+    toast.error(
+      error?.response?.data?.msg || "There are not attendees to this event"
+    );
     return null;
   }
 };

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   color: var(--black);
 
   & a,
-  & button {
+  & button.nav-link {
     color: var(--black);
     text-decoration: none;
     text-transform: uppercase;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem; /* for icons if any */
+    gap: 0.5rem;
     transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
   }
 
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   }
 
   & a:hover,
-  & button:hover {
+  & button.nav-link:hover {
     color: var(--secondary-color);
   }
 `;
