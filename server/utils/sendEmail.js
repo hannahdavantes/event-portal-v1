@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { BadRequestError } from "../errors/customErrors.js";
 
 export const sendEmail = async ({ to, subject, html }) => {
   try {
@@ -11,7 +12,7 @@ export const sendEmail = async ({ to, subject, html }) => {
     });
 
     await transporter.sendMail({
-      from: `"Event Manager" <${process.env.EMAIL_USER}>`,
+      from: `"Event Portal App" <${process.env.EMAIL_USER}>`,
       to,
       subject,
       html,
@@ -20,6 +21,6 @@ export const sendEmail = async ({ to, subject, html }) => {
     console.log("Email sent!");
   } catch (error) {
     console.error("Email error:", error);
-    throw new Error("Failed to send email");
+    throw new BadRequestError("Something went wrong with sending emails");
   }
 };

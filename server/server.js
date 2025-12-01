@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { StatusCodes } from "http-status-codes";
-import cloudinary from "cloudinary";
+import configureCloudinary from "./utils/cloudinaryConfig.js";
 
 //Routers
 import eventRouter from "./routers/eventRouter.js";
@@ -15,15 +15,11 @@ import userRouter from "./routers/userRouter.js";
 //Middlewares
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
 
-//Cloudinary - uploading
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET,
-});
+// configure cloudinary (separated into utils/cloudinaryConfig.js)
+configureCloudinary();
 
 //Object Document Mapper for MongoDB
-import mongoose from "mongoose";
+import connectDB from "./utils/mongooseConfig.js";
 
 //ExpressJS
 import express from "express";
@@ -67,7 +63,7 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 5100;
 try {
-  await mongoose.connect(process.env.MONGO_URL);
+  await connectDB();
   app.listen(port, () => {
     console.log("===========================");
     console.log(`Server running on PORT ${port}`);

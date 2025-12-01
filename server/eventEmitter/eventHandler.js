@@ -36,15 +36,13 @@ eventEmitter.on(
 );
 
 eventEmitter.on("notifyAttendees", async ({ event }) => {
-  console.log("Sending notifications to attendees...");
-
   for (const attendee of event.attendees) {
     await sendEmail({
       to: attendee.email,
       subject: `Update about ${event.title}`,
       html: `
         <h2>Hello ${attendee.firstName} ${attendee.lastName},</h2>
-        <p>There is an important update regarding your event:</p>
+        <p>This is a friendly reminder about your event:</p>
 
         <h3>${event.title}</h3>
         <p>${event.description}</p>
@@ -68,6 +66,5 @@ eventEmitter.on("notifyAttendees", async ({ event }) => {
       `,
     });
   }
-
   console.log("All attendee notifications sent!");
 });

@@ -9,7 +9,7 @@ export const action = async ({ params }) => {
     return redirect("/events");
   } catch (error) {
     toast.error(
-      error?.response?.data?.msg || "There are not attendees to this event"
+      error?.response?.data?.msg || "There are no attendees to this event"
     );
     return null;
   }

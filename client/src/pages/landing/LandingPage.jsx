@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <Wrapper>
       <section className="hero">
-        <h1 className="title">Event Portal</h1>
+        <h1 className="title">Events Portal</h1>
         <img
           src={groupSelfie}
           alt="Group selfie illustration"
