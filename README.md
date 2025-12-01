@@ -8,56 +8,52 @@ Simple full-stack events app — React + Vite front-end and Express + MongoDB se
 - npm (bundled with Node) or an alternative package manager
 - A running MongoDB instance (Atlas or local) and Cloudinary account for image upload
 
-## Quick start (recommended)
+## Quick run (development)
 
-1. Clone the repo:
+Follow these steps from the project root to install deps, configure environment variables, and run the app.
 
-   git clone <repo-url>
-   cd event-portal-v1
+1. Install dependencies (root + client + server):
 
-2. Install root, client and server dependencies:
+```bash
+# install root dependencies
+npm install
 
-   # install root deps (concurrently) and extras
+# client
+cd client && npm install && cd ..
 
-   npm install
+# server
+cd server && npm install && cd ..
+```
 
-   # install client deps
+2. Configure server environment: copy the example and fill values
 
-   cd client
-   npm install
-   cd ../server
-   npm install
-   cd ..
+```bash
+cp server/.env.example server/.env
+# then open server/.env and set MONGO_URL, CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET, JWT_SECRET, JWT_EXPIRES_IN, EMAIL_USER, GOOGLE_APP_PASSWORD
+```
 
-3. Copy the server environment config and fill values (see `server/.env.example`):
+3. Run both services together (recommended)
 
-   cp server/.env.example server/.env
+```bash
+# from project root
+npm run dev
+```
 
-   Fill in values for:
+Notes:
 
-   - MONGO_URL (MongoDB connection string)
-   - CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET (Cloudinary)
-   - JWT_SECRET, JWT_EXPIRES_IN (JWT config)
-   - EMAIL_USER, GOOGLE_APP_PASSWORD (for sending emails via Gmail)
+- The root `npm run dev` uses `concurrently` to start both client (Vite) and server (nodemon). Client dev server usually runs at http://localhost:5173 and server at http://localhost:5100.
 
-4. Start both server and client concurrently from the repo root:
+Run services separately (optional):
 
-   npm run dev
-
-   - Client will run (Vite) on the default Vite port (usually http://localhost:5173)
-   - Server will run on port 5100 by default (http://localhost:5100)
-
-Alternatively run the server and client individually in separate terminals:
-
-# Server
-
+```bash
+# server (in its own terminal)
 cd server
 npm run dev
 
-# Client
-
+# client (in its own terminal)
 cd client
 npm run dev
+```
 
 ## Development details
 
